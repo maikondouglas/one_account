@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require_relative '../config/environment'
 require 'rspec/rails'
@@ -12,6 +14,7 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
 RSpec.configure do |config|
   config.around(:each) do |example|
     Timeout.timeout(10) do
