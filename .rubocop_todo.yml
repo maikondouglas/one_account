@@ -143,9 +143,9 @@ Layout/LineLength:
   Max: 120
 
 Layout/IndentationConsistency:
-  EnforcedStyle: indented
+  EnforcedStyle: normal
   SupportedStyles:
-    - indented
+    - normal
     - aligned
 Layout/IndentationWidth:
   Width: 2
