@@ -86,5 +86,4 @@ SimpleCov.start do
   add_filter 'lib/tasks'
   add_filter '/tmp'
   add_filter '/vendor'
-  add_filter '/lib'
 end

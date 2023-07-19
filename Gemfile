@@ -15,10 +15,12 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'shoulda-matchers'
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'dotenv-rails'
+  gem 'faker'
 end
 
 group :test do
