@@ -114,18 +114,12 @@ Style/StringLiterals:
   Exclude:
     - 'Rakefile'
     - 'app/mailers/application_mailer.rb'
-    - 'bin/bundle'
-    - 'bin/rails'
-    - 'bin/rake'
-    - 'bin/setup'
-    - 'config.ru'
-    - 'config/application.rb'
-    - 'config/boot.rb'
-    - 'config/environment.rb'
-    - 'config/environments/development.rb'
-    - 'config/environments/production.rb'
-    - 'config/environments/test.rb'
-    - 'config/puma.rb'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'spec/rails_helper.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -143,9 +137,21 @@ Layout/LineLength:
   Max: 120
 
 Layout/IndentationConsistency:
-  EnforcedStyle: normal
+  EnforcedStyle: indented_internal_methods
   SupportedStyles:
-    - normal
+    - indented_internal_methods
     - aligned
 Layout/IndentationWidth:
   Width: 2
+
+Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context', 'let']
+
+Metrics/LineLength:
+  Max: 80
+
+AsciiComments:
+  Enabled: false
