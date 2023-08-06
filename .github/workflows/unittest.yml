@@ -8,11 +8,10 @@ on:
   pull_request:
     branches:
       - 'develop'
-# Após o Pull do RuboCop descomentar essas linhas.
-#   workflow_run:
-#     workflows: ["RuboCop"]
-#     types:
-#       - completed
+  workflow_run:
+    workflows: ["RuboCop"]
+    types:
+      - completed
 
 jobs:
   test:
