@@ -1,0 +1,48 @@
+name: Coverage
+
+on:
+  push:
+    branches:
+      - 'feat/*'
+      - 'fix/*'
+  pull_request:
+    branches:
+      - 'develop'
+  workflow_run:
+    workflows: [UnitTest]
+    types:
+      - completed
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
+
+      - name: Bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Run RSpec and generate coverage report
+        env:
+          CI: true # Set the CI environment variable to enable SimpleCov
+        run: |
+          bundle exec rspec
+          mkdir -p coverage
+          mv coverage/index.html coverage/index_last_run.html
+          mv coverage/.last_run.json coverage/last_run.json
+
+      - name: Archive coverage artifacts
+        if: failure() # Only archive artifacts if the build fails
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-artifacts
+          path: coverage
