@@ -16,19 +16,16 @@ jobs:
         with:
           ruby-version: 3.2.0
 
-      - name: Bundle install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-
   rubocop:
     name: Rubocop
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - name: Bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
 
       - name: Run Rubocop
         run: bundle exec rubocop
@@ -39,8 +36,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - name: Bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
 
       - name: Run UnitTest
         run: bundle exec rspec
@@ -51,8 +50,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - name: Bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
 
       - name: Run RSpec and generate coverage report
         env:
