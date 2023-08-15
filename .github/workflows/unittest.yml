@@ -1,6 +1,11 @@
 name: UnitTest
 
-on: [workflow_run]
+on:
+  workflow_run:
+    workflows: ["RuboCop"]
+    types:
+      - completed
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -21,6 +26,3 @@ jobs:
 
       - name: Run RSpec
         run: bundle exec rspec
-
-    outputs:
-      workflow_run_id: ${{ steps.workflow_run.outputs.run-id }}
