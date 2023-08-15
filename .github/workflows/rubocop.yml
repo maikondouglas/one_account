@@ -1,11 +1,6 @@
 name: RuboCop
 
-on:
-  push:
-    branches:
-      - 'feat/*'
-      - 'fix/*'
-      - 'develop'
+on: [push]
 
 jobs:
   rubocop:
