@@ -3,8 +3,8 @@ name: Multi-Step Pipeline
 on: [push]
 
 jobs:
-  build:
-    name: Build
+  rubocop:
+    name: Rubocop
     runs-on: ubuntu-latest
 
     steps:
@@ -16,17 +16,6 @@ jobs:
         with:
           ruby-version: 3.2.0
 
-  rubocop:
-    name: Rubocop
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Bundle install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-
       - name: Run Rubocop
         run: bundle exec rubocop
 
@@ -36,10 +25,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Bundle install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
 
       - name: Run UnitTest
         run: bundle exec rspec
@@ -50,10 +42,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Bundle install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
 
       - name: Run RSpec and generate coverage report
         env:
