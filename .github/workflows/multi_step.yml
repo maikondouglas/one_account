@@ -75,7 +75,7 @@ jobs:
           mv coverage/.last_run.json coverage/last_run.json
 
       - name: Archive coverage artifacts
-        if: failure() # Only archive artifacts if the build fails
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: coverage-artifacts
