@@ -1,17 +1,14 @@
-name: Coverage
+name: Multi-Step Pipeline
 
-on:
-  workflow_run:
-    workflows: ["UnitTest"]
-    types:
-      - completed
+on: [push]
 
 jobs:
-  coverage:
+  build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Check out code
         uses: actions/checkout@v2
 
       - name: Set up Ruby
@@ -24,6 +21,30 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
+  rubocop:
+    name: Rubocop
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Rubocop
+        run: bundle exec rubocop
+
+  unittest:
+    name: UnitTest
+    needs: rubocop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run UnitTest
+        run: bundle exec rspec
+
+  coverage:
+    name: Coverage
+    needs: unittest
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Run RSpec and generate coverage report
         env:
           CI: true # Set the CI environment variable to enable SimpleCov
