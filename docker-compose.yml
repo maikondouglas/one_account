@@ -1,0 +1,24 @@
+version: '3'
+services:
+  api:
+    container_name: one_account_api
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.rails
+    labels:
+      repository: git@github.com:maikondouglas/one_account.git
+    volumes:
+      - ./:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12
+    restart: always
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
