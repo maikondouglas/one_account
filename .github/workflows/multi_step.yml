@@ -1,0 +1,82 @@
+name: Multi-Step Pipeline
+
+on: [push]
+
+jobs:
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
+
+      - name: Bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Run Rubocop
+        run: bundle exec rubocop
+
+  unittest:
+    name: UnitTest
+    needs: rubocop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
+
+      - name: Bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Run UnitTest
+        run: bundle exec rspec
+
+  coverage:
+    name: Coverage
+    needs: unittest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.0
+
+      - name: Bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Run RSpec and generate coverage report
+        env:
+          CI: true # Set the CI environment variable to enable SimpleCov
+        run: |
+          bundle exec rspec
+          mkdir -p coverage
+          mv coverage/index.html coverage/index_last_run.html
+          mv coverage/.last_run.json coverage/last_run.json
+
+      - name: Archive coverage artifacts
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-artifacts
+          path: coverage
