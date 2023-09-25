@@ -134,7 +134,7 @@ Style/SymbolArray:
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
 # URISchemes: http, https
 Layout/LineLength:
-  Max: 120
+  Max: 132
 
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
@@ -149,9 +149,6 @@ Documentation:
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'let']
-
-Metrics/LineLength:
-  Max: 80
 
 AsciiComments:
   Enabled: false
