@@ -9,6 +9,7 @@ gem 'pg', '~> 1.5.3'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.5'
 gem 'rubocop', require: false
+gem 'sqlite3'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
