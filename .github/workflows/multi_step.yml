@@ -69,7 +69,7 @@ jobs:
         env:
           CI: true # Set the CI environment variable to enable SimpleCov
         run: |
-          bundle exec rspec
+          RAILS_ENV=test bundle exec rspec
           mkdir -p coverage
           mv coverage/index.html coverage/index_last_run.html
           mv coverage/.last_run.json coverage/last_run.json
