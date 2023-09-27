@@ -44,7 +44,7 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Run UnitTest
-        run: bundle exec rspec
+        run: RAILS_ENV=test bundle exec rspec
 
   coverage:
     name: Coverage
