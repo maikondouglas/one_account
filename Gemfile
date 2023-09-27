@@ -13,9 +13,11 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
