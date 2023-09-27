@@ -151,7 +151,10 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'let']
 
 Metrics/LineLength:
-  Max: 80
+  Max: 136
 
 AsciiComments:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
   Enabled: false
