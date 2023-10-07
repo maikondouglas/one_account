@@ -3,12 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Accounts::Creator, type: :repository do
-  let(:creator) { described_class.new }
-  let(:email)   { Faker::Internet.email }
+  subject(:account_repo) { Accounts::Repository.new }
+
+  let(:email) { Faker::Internet.email }
   let(:params) do
     { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: }
   end
-  let(:result) { creator.create(params) }
+  let(:result) { account_repo.create(params) }
 
   describe '#create' do
     context 'when valid account_params' do

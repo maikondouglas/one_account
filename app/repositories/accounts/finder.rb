@@ -2,12 +2,11 @@
 
 module Accounts
   class Finder
-    def find(id)
-      Account::Record.find(id)
+    def initialize(repository)
+      @repository = repository
     end
 
-    def all
-      Account::Record.all
-    end
+    def find(id) = @repository.find(id)
+    def all      = @repository.all
   end
 end

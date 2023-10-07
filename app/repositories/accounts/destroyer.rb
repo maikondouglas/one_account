@@ -2,8 +2,12 @@
 
 module Accounts
   class Destroyer
+    def initialize(repository)
+      @repository = repository
+    end
+
     def destroy(id)
-      account = Account::Record.find(id)
+      account = @repository.find(id)
       account.destroy
     end
   end

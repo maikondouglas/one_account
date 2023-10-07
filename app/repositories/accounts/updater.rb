@@ -2,8 +2,12 @@
 
 module Accounts
   class Updater
+    def initialize(repository)
+      @repository = repository
+    end
+
     def update(account_params)
-      account = Account::Record.find(account_params[:id])
+      account = @repository.find(account_params[:id])
       account.update(account_params)
     end
   end

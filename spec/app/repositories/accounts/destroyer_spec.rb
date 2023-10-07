@@ -3,10 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Accounts::Destroyer, type: :repository do
+  subject(:account_repo) { Accounts::Repository.new }
+
   let(:account)    { create(:account) }
-  let(:destroyer)  { described_class.new }
   let(:account_id) { account.id }
-  let(:result)     { destroyer.destroy(account_id) }
+  let(:result)     { account_repo.destroy(account_id) }
 
   describe '#destroy' do
     context 'when an account exists' do

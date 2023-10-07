@@ -2,14 +2,10 @@
 
 module Accounts
   class Repository
-    attr_reader :finder, :creator, :destroyer, :updater
+    include ::Base
 
-    def initialize
-      @finder    = Finder.new
-      @creator   = Creator.new
-      @destroyer = Destroyer.new
-      @updater   = Updater.new
-    end
+    repository 'Account::Record'
+    repositories_names :finder, :creator, :destroyer, :updater
 
     delegate :create, to: :creator
     delegate :destroy, to: :destroyer

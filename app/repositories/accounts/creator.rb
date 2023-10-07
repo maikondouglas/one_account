@@ -2,8 +2,10 @@
 
 module Accounts
   class Creator
-    def create(account_params)
-      Account::Record.create(account_params)
+    def initialize(repository)
+      @repository = repository
     end
+
+    def create(account_params) = @repository.create(account_params)
   end
 end
