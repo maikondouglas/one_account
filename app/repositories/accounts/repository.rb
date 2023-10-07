@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Accounts
-  class DelegateRepository
+  class Repository
     attr_reader :finder, :creator, :destroyer, :updater
 
     def initialize

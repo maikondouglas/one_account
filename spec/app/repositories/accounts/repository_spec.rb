@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Accounts::DelegateRepository, type: :repository do
+RSpec.describe Accounts::Repository, type: :repository do
   let(:delegate_repository) { described_class.new }
 
   describe '#initialize' do

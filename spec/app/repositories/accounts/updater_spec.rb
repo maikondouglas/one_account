@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Accounts::Updater, type: :repository do
-  subject(:account_repo) { Accounts::DelegateRepository.new }
+  subject(:account_repo) { Accounts::Repository.new }
 
   let(:updater)    { described_class.new }
   let(:account)    { create(:account) }

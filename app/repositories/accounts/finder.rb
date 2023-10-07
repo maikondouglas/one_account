@@ -3,11 +3,11 @@
 module Accounts
   class Finder
     def find(id)
-      Person::Account.find(id)
+      Account::Record.find(id)
     end
 
     def all
-      Person::Account.all
+      Account::Record.all
     end
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe Accounts::Destroyer, type: :repository do
   describe '#destroy' do
     context 'when an account exists' do
       it 'destroys the account' do
-        expect { result }.to change(Person::Account, :count).by(0)
+        expect { result }.to change(Account::Record, :count).by(0)
       end
     end
 

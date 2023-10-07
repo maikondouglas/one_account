@@ -3,7 +3,7 @@
 module Accounts
   class Destroyer
     def destroy(id)
-      account = Person::Account.find(id)
+      account = Account::Record.find(id)
       account.destroy
     end
   end

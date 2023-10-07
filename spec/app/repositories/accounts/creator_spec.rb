@@ -13,7 +13,7 @@ RSpec.describe Accounts::Creator, type: :repository do
   describe '#create' do
     context 'when valid account_params' do
       it 'creates a new account' do
-        expect { result }.to change(Person::Account, :count).by(1)
+        expect { result }.to change(Account::Record, :count).by(1)
       end
     end
 
