@@ -8,11 +8,16 @@ services:
     labels:
       repository: git@github.com:maikondouglas/one_account.git
     volumes:
-      - ./:/app
+      - ./:/current
     ports:
       - "3000:3000"
     depends_on:
       - db
+    environment:
+      DB_PORT: ${DB_PORT}
+      DB_HOST: ${DB_HOST}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     command: bin/rails server -b '0.0.0.0'
 
   db:
@@ -20,6 +25,7 @@ services:
     restart: always
     container_name: db
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./tmp/db:/var/lib/postgresql/data

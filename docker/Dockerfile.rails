@@ -1,15 +1,32 @@
 FROM ruby:3.2.0
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs postgresql-client
+LABEL maintainer Maikon Douglas "https://www.linkedin.com/in/maikon-douglas-a62394130/r"
+LABEL LC_ALL C.UTF-8
+LABEL LANG en_US.UTF-8
+LABEL LANGUAGE en_US.UTF-8
 
-WORKDIR /app
-RUN chmod 777 /app
+# RUN useradd -m -u 1000 -G staff docker && echo "root:1234" | chpasswd && echo "docker:1234" | chpasswd
+# RUN usermod -G sudo docker
+
+RUN groupadd --gid 1000 docker \
+  && useradd --uid 1000 --gid docker --shell /bin/bash --create-home docker
+
+
+RUN apt-get update -qq && \
+  apt-get install -y build-essential libpq-dev nodejs postgresql-client
+
+WORKDIR /current
 
 COPY . .
 
 RUN bundle install
 
-COPY entrypoint.sh /usr/bin/
+COPY ./bin/entrypoint.sh /usr/bin/
+
 RUN chmod +x /usr/bin/entrypoint.sh
+
 ENTRYPOINT ["entrypoint.sh"]
+
+USER docker
+
 EXPOSE 3000
