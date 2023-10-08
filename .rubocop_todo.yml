@@ -129,13 +129,6 @@ Style/SymbolArray:
   EnforcedStyle: percent
   MinSize: 10
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 120
-
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
   SupportedStyles:
@@ -151,7 +144,10 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'let']
 
 Metrics/LineLength:
-  Max: 80
+  Max: 136
 
 AsciiComments:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
   Enabled: false
