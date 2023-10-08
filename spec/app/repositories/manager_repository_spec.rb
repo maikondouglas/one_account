@@ -7,7 +7,7 @@ module ModuleExample
   class Repository; end
 
   class DummyClass
-    include Base
+    include ManagerRepository
 
     repository 'Account::Record'
     repositories_names :repository
@@ -16,7 +16,7 @@ module ModuleExample
   end
 end
 
-RSpec.describe Base, type: :repository do
+RSpec.describe ManagerRepository, type: :repository do
   let(:dummy_instance) { ModuleExample::DummyClass.new }
   let(:repository_instance) { instance_double('RepositoryInstance') }
 
