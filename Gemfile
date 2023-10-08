@@ -11,13 +11,16 @@ gem 'rails', '~> 7.0.5'
 gem 'rswag-api'
 gem 'rswag-ui'
 gem 'rubocop', require: false
+gem 'sqlite3'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry'
   gem 'rspec-rails'
   gem 'rswag-specs'
   gem 'rubocop-factory_bot', require: false
