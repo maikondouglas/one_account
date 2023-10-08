@@ -3,11 +3,10 @@
 require 'spec_helper'
 require_relative '../config/environment'
 require 'rspec/rails'
+require 'database_cleaner'
 
 ENV['RAILS_ENV'] ||= 'test'
-if Rails.env.production?
-  abort('The Rails environment is running in production mode!')
-end
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
@@ -28,4 +27,17 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   config.formatter = :progress
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before do
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 end
