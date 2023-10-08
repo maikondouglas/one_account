@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 module Accounts
-  class Destroyer
-    def initialize(repository)
-      @repository = repository
-    end
-
+  class Destroyer < ::InitializeRepository
     def destroy(id)
       account = @repository.find(id)
       account.destroy

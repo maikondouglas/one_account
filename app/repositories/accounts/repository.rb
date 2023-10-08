@@ -2,7 +2,7 @@
 
 module Accounts
   class Repository
-    include ::Base
+    include ::ManagerRepository
 
     repository 'Account::Record'
     repositories_names :finder, :creator, :destroyer, :updater
