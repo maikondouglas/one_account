@@ -21,6 +21,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry'
+  gem 'pry-remote'
   gem 'rspec-rails'
   gem 'rswag-specs'
   gem 'rubocop-factory_bot', require: false
