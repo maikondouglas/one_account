@@ -17,6 +17,8 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+
   config.around do |example|
     Timeout.timeout(10) do
       example.run
