@@ -1,11 +1,117 @@
----
-openapi: 3.0.1
+swagger: '2.0'
 info:
-  title: API V1
-  version: v1
-paths: {}
-servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+  title: One Account API
+  version: 1.0.0
+basePath: /api/v1
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+
+tags:
+  - name: Contas
+    description: Operações relacionadas a contas de usuário
+
+paths:
+  /accounts:
+    get:
+      tags:
+          - Contas
+      summary: Lista todas as contas
+      responses:
+        '200':
+          description: Sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Account'
+
+    post:
+      tags:
+            - Contas
+      summary: Cria uma nova conta
+      parameters:
+        - in: body
+          name: account
+          description: Dados da conta a ser criada
+          required: true
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        '200':
+          description: Sucesso
+          schema:
+            $ref: '#/definitions/Account'
+
+  /accounts/{id}:
+    get:
+      tags:
+        - Contas
+      summary: Obtém uma conta por ID
+      parameters:
+        - in: path
+          name: id
+          description: ID da conta a ser obtida
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Sucesso
+          schema:
+            $ref: '#/definitions/Account'
+
+    put:
+      tags:
+        - Contas
+      summary: Atualiza uma conta existente
+      parameters:
+        - in: path
+          name: id
+          description: ID da conta a ser atualizada
+          required: true
+          type: integer
+        - in: body
+          name: account
+          description: Dados da conta a ser atualizada
+          required: true
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        '200':
+          description: Sucesso
+          schema:
+            $ref: '#/definitions/Account'
+
+    delete:
+      tags:
+        - Contas
+      summary: Remove uma conta
+      parameters:
+        - in: path
+          name: id
+          description: ID da conta a ser removida
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: Conta removida com sucesso
+
+definitions:
+  Account:
+    type: object
+    properties:
+      id:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      phone_number:
+        type: string
+      birthday:
+        type: string
+        format: date
