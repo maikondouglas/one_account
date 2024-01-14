@@ -10,6 +10,6 @@ module Accounts
     delegate :create, to: :creator
     delegate :destroy, to: :destroyer
     delegate :update, to: :updater
-    delegate :find, :all, to: :finder
+    delegate :find, :all, :where, to: :finder
   end
 end

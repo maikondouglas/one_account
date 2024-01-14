@@ -18,7 +18,7 @@ module Api
       def create
         account = AccountService::Creator.create(account_params)
 
-        render json: account
+        render json: account, serializer: Api::V1::AccountResourceSerializer
       end
 
       def update
