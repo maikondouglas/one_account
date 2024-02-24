@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.0'
+gem 'active_model_serializers'
 gem 'bootsnap', require: false
 gem 'pg', '~> 1.5.3'
 gem 'puma', '~> 5.0'
