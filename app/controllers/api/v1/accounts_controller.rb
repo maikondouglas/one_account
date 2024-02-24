@@ -22,11 +22,9 @@ module Api
       end
 
       def update
-        if @account.update(account_params)
-          render json: { success: true, message: 'Account was successfully updated', data: @account }, status: :ok
-        else
-          render json: @account.errors, status: :unprocessable_entity
-        end
+        account = AccountService::Updator.update(account_params.merge({ id: params[:id] }))
+
+        render json: account, serializer: Api::V1::AccountResourceSerializer
       end
 
       def destroy
@@ -38,7 +36,7 @@ module Api
       private
 
         def account_params
-          params.require(:account).permit(:first_name, :last_name, :email, :phone_number, :birthday)
+          params.require(:account).permit(:id, :first_name, :last_name, :email, :phone_number, :birthday, :active)
         end
 
         def set_account

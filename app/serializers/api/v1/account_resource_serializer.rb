@@ -5,7 +5,7 @@ module Api
     class AccountResourceSerializer < ActiveModel::Serializer
       include ActiveSupport::NumberHelper
 
-      attributes :id, :name, :email, :phone_number, :birthday
+      attributes :id, :name, :email, :phone_number, :birthday, :active
 
       def name
         return unless object.first_name? && object.last_name?
